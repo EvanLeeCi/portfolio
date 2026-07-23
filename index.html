@@ -115,6 +115,14 @@
   .btn-text{ color: var(--accent); font-weight:500; font-size:15px; }
 
   .hero-right{ position:relative; }
+  .photo{
+    width:100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    object-position: 50% 20%;
+    border-radius: var(--radius);
+    display:block;
+  }
   .photo-placeholder{
     width:100%;
     aspect-ratio: 4/3;
@@ -348,7 +356,7 @@
       </div>
     </div>
     <div class="hero-right">
-      <div class="photo-placeholder">Drop your own photo here<br>(replace .photo-placeholder in the code with an &lt;img&gt;)</div>
+      <img class="photo" src="photo.jpg" alt="Evan Lee" />
     </div>
   </section>
 

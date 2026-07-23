@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Evan Lee — Portfolio</title>
+<style>
+  :root{
+    --bg: #f7f2e7;
+    --bg-card: #ffffff;
+    --ink: #1c1a17;
+    --ink-soft: #57534a;
+    --accent: #c1571f;
+    --accent-soft: #f0d9c4;
+    --line: #e3dbc9;
+    --radius: 16px;
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  h1,h2,h3{
+    font-family: Georgia, "Times New Roman", serif;
+    margin: 0;
+    font-weight: 400;
+  }
+  a{ color: inherit; text-decoration: none; }
+  .wrap{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* Nav */
+  header.nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 28px 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--line);
+  }
+  .logo{
+    font-family: Georgia, serif;
+    letter-spacing: 3px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .nav-links{ display:flex; gap:36px; align-items:center; }
+  .nav-links a{ font-size: 15px; color: var(--ink-soft); }
+  .nav-links a:hover{ color: var(--ink); }
+  .btn-outline{
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .btn-outline:hover{ background: var(--accent); color: #fff; }
+
+  /* Hero */
+  .hero{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items:center;
+    padding: 64px 32px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .eyebrow{
+    color: var(--accent);
+    letter-spacing: 2px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .hero h1{
+    font-size: 52px;
+    line-height: 1.15;
+    margin-bottom: 22px;
+  }
+  .hero .subhead{
+    color: var(--ink-soft);
+    font-size: 17px;
+    max-width: 480px;
+    margin-bottom: 30px;
+  }
+  .cta-row{
+    display:flex;
+    align-items:center;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+  .btn-primary{
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .btn-primary:hover{ opacity:.9; }
+  .btn-text{ color: var(--accent); font-weight:500; font-size:15px; }
+  .location-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border: 1px solid var(--line);
+    background:#fff;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  .hero-right{ position:relative; }
+  .photo-placeholder{
+    width:100%;
+    aspect-ratio: 4/3;
+    border-radius: var(--radius);
+    border: 2px dashed var(--accent-soft);
+    background: repeating-linear-gradient(135deg, #fdfaf3, #fdfaf3 12px, #f4ead9 12px, #f4ead9 24px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color: var(--ink-soft);
+    font-size: 14px;
+    padding: 24px;
+  }
+  .badge-float{
+    position:absolute;
+    bottom: 20px;
+    right: 20px;
+    background:#fff;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight:500;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+
+  /* Work section */
+  .work-section{
+    padding: 40px 32px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .work-header{
+    display:flex;
+    align-items:baseline;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+  .work-header h2{ font-size: 30px; white-space:nowrap; }
+  .work-header .rule{ flex:1; height:1px; background: var(--line); }
+
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .card{
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+  }
+  .card-media{
+    aspect-ratio: 16/10;
+    background: var(--accent-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: #a06a3e;
+    font-size: 13px;
+    position:relative;
+  }
+  .card-media.soon{
+    background: repeating-linear-gradient(135deg, #f4ead9, #f4ead9 10px, #efe2cb 10px, #efe2cb 20px);
+  }
+  .status-pill{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:#fff;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight:600;
+    letter-spacing: .5px;
+    text-transform:uppercase;
+    color: var(--ink-soft);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .status-pill.live{ color: #1a7a3c; }
+  .status-pill.soon{ color: var(--accent); }
+  .card-body{
+    padding: 20px 22px 24px;
+    display:flex;
+    flex-direction:column;
+    gap: 8px;
+    flex:1;
+  }
+  .card-body h3{ font-size: 19px; }
+  .card-body .subtitle{ color: var(--ink-soft); font-size: 13px; margin-bottom: 4px; }
+  .card-body p{ font-size: 14px; color: var(--ink-soft); margin: 0; flex:1; }
+  .tags{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 10px; }
+  .tag{
+    background: var(--accent-soft);
+    color: #8a4b26;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .card-link{
+    margin-top: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* Footer */
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 32px;
+    text-align:center;
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+
+  @media (max-width: 860px){
+    .hero{ grid-template-columns: 1fr; padding-top: 40px; }
+    .hero h1{ font-size: 38px; }
+    header.nav{ flex-wrap:wrap; gap:16px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="logo">EVAN LEE</div>
+    <nav class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn-outline" href="#resume">Resume</a>
+  </header>
+
+  <section class="hero">
+    <div class="hero-left">
+      <p class="eyebrow">DATA SCIENCE &nbsp;•&nbsp; PRODUCT &nbsp;•&nbsp; DEVELOPMENT</p>
+      <h1>I build useful digital experiences from messy ideas.</h1>
+      <p class="subhead">I'm Evan — a data science student turning real business problems into clear, human-centered tools.</p>
+      <div class="cta-row">
+        <a class="btn-primary" href="#work">View my work</a>
+        <a class="btn-text" href="#about">About me →</a>
+      </div>
+      <div class="location-badge">📍 Based in Charlotte, NC</div>
+    </div>
+    <div class="hero-right">
+      <div class="photo-placeholder">Drop your own photo here<br>(replace .photo-placeholder in the code with an &lt;img&gt;)</div>
+      <div class="badge-float">✨ Builder + problem solver</div>
+    </div>
+  </section>
+
+  <section class="work-section" id="work">
+    <div class="work-header">
+      <h2>Selected Work</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="grid" id="project-grid"></div>
+  </section>
+
+  <footer id="contact">
+    Evan Lee · Charlotte, NC · <a href="mailto:you@example.com" style="color:var(--accent)">you@example.com</a>
+  </footer>
+
+<script>
+/* ============================================================
+   PROJECTS DATA
+   To add a new project later, just add another object to this
+   array — the layout, cards, and grid update automatically.
+   No other code needs to change.
+
+   Fields:
+     title       - project name shown on the card
+     subtitle    - one-line role/type (e.g. "Full-stack web app")
+     description - 1-2 sentence summary
+     tags        - array of short tech/skill labels
+     status      - "live" (has a real link) or "soon" (placeholder)
+     link        - URL to the live project or case study (optional)
+   ============================================================ */
+const PROJECTS = [
+  {
+    title: "Evan Lee Fitness",
+    subtitle: "Personal fitness brand & website",
+    description: "My own live site — redesigned and iterated on multiple times across desktop and mobile. Placeholder text/link, swap in your real copy and screenshot.",
+    tags: ["HTML/CSS/JS", "Responsive Design", "Git/GitHub"],
+    status: "live",
+    link: "#"
+  },
+  {
+    title: "Status Reporting Platform",
+    subtitle: "Automated insights & reporting",
+    description: "Report creation, autosave, carry-forward, PDF export, and a dashboard view. Sanitized case study and demo coming soon.",
+    tags: ["Supabase", "SQL", "Python"],
+    status: "soon"
+  },
+  {
+    title: "Work Allocation & Time-Tracking Platform",
+    subtitle: "Capital vs. BAU classification, fiscal-year logic",
+    description: "Turns a confusing time-tracking and project-allocation process into one organized app, with alerts and reporting dashboards. Demo uses fake employees/projects only.",
+    tags: ["React", "TypeScript", "Supabase"],
+    status: "soon"
+  },
+  {
+    title: "Interactive Franchise Location Map",
+    subtitle: "Location explorer",
+    description: "A responsive map application for exploring franchise locations across desktop, tablet, and kiosk displays. Public demo uses only public location data.",
+    tags: ["Mapbox", "Python", "Folium"],
+    status: "soon"
+  },
+  {
+    title: "Smoothie Ordering & Fulfillment Platform",
+    subtitle: "Ordering, customization, and staff fulfillment flow",
+    description: "End-to-end ordering app — customer ordering and customization, staff fulfillment, and admin menu management. Case study will note my specific contributions on this collaborative build.",
+    tags: ["React", "Node", "PostgreSQL"],
+    status: "soon"
+  }
+];
+
+function projectCard(p){
+  const mediaClass = p.status === "soon" ? "card-media soon" : "card-media";
+  const pillClass = p.status === "soon" ? "status-pill soon" : "status-pill live";
+  const pillLabel = p.status === "soon" ? "Coming soon" : "Live";
+  const mediaLabel = p.status === "soon" ? "Preview coming soon" : "Project image";
+  const linkHtml = p.status === "soon"
+    ? `<span class="card-link" style="color:var(--ink-soft)">In progress</span>`
+    : `<a class="card-link" href="${p.link || '#'}" target="_blank" rel="noopener">View project →</a>`;
+
+  return `
+    <div class="card">
+      <div class="${mediaClass}">
+        <span class="status-pill ${p.status === 'soon' ? 'soon' : 'live'}">${pillLabel}</span>
+        ${mediaLabel}
+      </div>
+      <div class="card-body">
+        <h3>${p.title}</h3>
+        <div class="subtitle">${p.subtitle}</div>
+        <p>${p.description}</p>
+        <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        ${linkHtml}
+      </div>
+    </div>
+  `;
+}
+
+document.getElementById('project-grid').innerHTML = PROJECTS.map(projectCard).join('');
+</script>
+
+</body>
+</html>
